@@ -23,6 +23,3 @@ def employee_dashboard():
 @app.route('/driver')
 def driver_dashboard():
     return "Etete Driver Portal"
-
-if __name__ == '__main__':
-    app.run(debug=True)
