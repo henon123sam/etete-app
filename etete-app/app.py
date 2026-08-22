@@ -1,13 +1,13 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from supabase import create_client, Client
 
 app = Flask(__name__)
 
-# Configure a local SQLite database file named 'etete.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///etete.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# Supabase configuration
+SUPABASE_URL = "https://jkiliqipfzfxqmsfcssp.supabase.co"
+SUPABASE_KEY = "sb_publishable_Xz4YJx5VJB0rq1M8j4-QBw_L5ZZWHyp"
 
-db = SQLAlchemy(app)
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # Test Route for Customer Interface
 @app.route('/')
@@ -25,7 +25,4 @@ def driver_dashboard():
     return "Etete Driver Portal"
 
 if __name__ == '__main__':
-    # Automatically create database tables if they don't exist yet
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
